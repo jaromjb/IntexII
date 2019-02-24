@@ -1,0 +1,12 @@
+<%inherit file="app_base.htm" />
+
+<%block name="content">
+
+    <form method="POST">
+    <table>
+        ${ form.as_table() }
+    </table>
+    <input type="submit" value="Submit">
+    </form>
+
+</%block>
