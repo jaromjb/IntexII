@@ -1,0 +1,67 @@
+## this is the skeleton of all pages on in this app - it defines the basic html tags
+<!DOCTYPE html>
+<html>
+    <meta charset="UTF-8">
+    <head>
+
+        <title>Jedi &mdash; <%block name="title"></%block></title>
+
+        ## add any site-wide scripts or CSS here; for example, jquery:
+        <script src="${ STATIC_URL }homepage/media/jquery-3.3.1.js"></script>
+
+        <script src="${ STATIC_URL }homepage/media/bootstrap.js"></script>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        
+        ## render the static file links with the same name as this template
+        <script src="/django_mako_plus/dmp-common.min.js"></script>
+        ${ django_mako_plus.links(self) }
+
+         <%block name="site_icon"><img src="${ STATIC_URL }homepage/media/python.png" alt="python" />
+        </%block>
+
+        <link rel="icon" img src="${ STATIC_URL }homepage/media/python.png" alt="python">
+
+    </head>
+    <body>
+        <div id="maintenance_message" class="alert alert-danger">Hey there. The server is going down tonight. Boo hoo.</div>
+        <header>
+           
+            <div class="title">Welcome to <br/> DMP!</div>
+
+            <ul class="nav">
+                <%block name="navbar_items"></%block>
+                
+                    
+                   
+                    <%block name="site_menu">
+                    </%block>
+                  </ul>
+        </header>
+
+        <main>
+            <div id="site_left">
+                <%block name="site_left">
+                Left side
+                </%block>
+            </div>
+            <div id="site_center">
+                <%block name="site_center">
+                Center
+                </%block>
+            </div>
+            <div id="site_right">
+                <%block name="site_right">
+                Right
+                </%block>
+            </div>
+        </main>
+
+        <footer>
+           <%! from datetime import datetime %>
+           <p>&copy;</p>
+        </footer>
+
+    </body>
+</html>
