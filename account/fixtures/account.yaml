@@ -1,0 +1,36 @@
+-   model: account.user
+    pk: 1
+    fields:
+        password: pbkdf2_sha256$120000$r1x2ZQDReavC$l5/vdo824/giOEEXFKQZQickk+pqhln2JINUQn9/NX4=
+        last_login: null
+        is_superuser: false
+        username: homer
+        first_name: Homer
+        last_name: Simpson
+        email: homer@simpsons.com
+        is_staff: false
+        is_active: true
+        date_joined: 2019-02-24 02:03:38.915454+00:00
+        birthdate: 2017-01-01 05:00:00+00:00
+        favcolor: ''
+        groups: []
+        user_permissions: []
+
+-   model: account.user
+    pk: 2
+    fields:
+        password: pbkdf2_sha256$120000$r1x2ZQDReavC$l5/vdo824/giOEEXFKQZQickk+pqhln2JINUQn9/NX4=
+        last_login: null
+        is_superuser: false
+        username: luke
+        first_name: Luke
+        last_name: Skywalker
+        email: luke@therebellion.com
+        is_staff: true
+        is_active: true
+        date_joined: 2019-02-24 02:03:38.915454+00:00
+        birthdate: 2017-01-01 05:00:00+00:00
+        favcolor: ''
+        groups: []
+        user_permissions: []
+

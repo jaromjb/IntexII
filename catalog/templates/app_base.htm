@@ -1,0 +1,12 @@
+<%inherit file="/homepage/templates/base.htm" />
+<%! from catalog import models as cmod %>
+
+
+<%block name="site_left">
+    <u1 id="LeftList">
+        <li><a href="/catalog/index/">All Products</a></li>
+        % for a in cats:
+            <a href="/catalog/index/${a.id}"><li>${a.name}</li></a><br>
+        % endfor
+    </u1>
+</%block>

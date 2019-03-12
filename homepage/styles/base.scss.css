@@ -71,4 +71,9 @@ footer a {
   margin: 15px 10% 0 0;
 }
 
+#LeftList {
+  list-style-type: none;
+  text-align: left;
+}
+
 /*# sourceMappingURL=base.scss.css.map */

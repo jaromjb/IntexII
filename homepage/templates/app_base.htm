@@ -2,15 +2,26 @@
 
 ## menu block
 <%block name="site_menu">
-<li class="nav-item ${ 'active' if request.dmp.page == 'index' else ''}">
-                      <a class="nav-link" href="/">Home</a>
-                    </li>
-                    <li class="nav-item ${ 'active' if request.dmp.page == 'about' else ''}">
-                      <a class="nav-link" href="/about/">About</a>
-                    </li>
-                    <li class="nav-item ${ 'active' if request.dmp.page == 'contact' else ''}">
-                      <a class="nav-link" href="/contact/">Contact</a>
-                    </li>
+<nav class="navbar">
+  <ul class="navbar nav">
+      <li class="nav-item"><a class="nav-link ${ 'active' if request.dmp.page == 'index' else ''}" href="/"><strong>Main</strong></a></li>
+          <li class="nav-item"><a class="nav-link ${ 'active' if request.dmp.page == 'contact' else ''}" href ="/contact/"><strong>Contact</strong></a></li>
+              <li class="nav-item"><a class="nav-link ${ 'active' if request.dmp.page == 'about' else ''}" href ="/about/"><strong>About</strong></a></li>
+              % if user.is_authenticated:
+              <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <strong>Welcome, ${request.user.first_name}</strong>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/homepage/about/">View Account</a>
+              <a class="dropdown-item" href="/account/logout/">Logout</a>
+              </div>
+              </li>
+              % else:
+              <li class="nav-item"><a class="nav-link" href="/account/login/"><strong>Login</strong></a></li>
+              % endif
+  </ul>
+</nav>
 </%block>
 
 <%block name="site_left">
