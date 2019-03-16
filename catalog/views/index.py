@@ -10,8 +10,11 @@ import math
 
 ITEMS_PER_PAGE = 3
 
+
+
 @view_function
 def process_request(request, category:cmod.Category=None, page:int=1):
+         
     products = cmod.Product.objects.filter(status="A")
     if category is not None:
         products = products.filter(category = category)
@@ -26,21 +29,7 @@ def process_request(request, category:cmod.Category=None, page:int=1):
     })
 
 
-
-    nc = cmod.Category()
-    nc.name = 'Food'
-    nc.save()
-
-    nc = cmod.Category()
-    nc.name = 'Clothing'
-    nc.save()
-
-    nc = cmod.Category()
-    nc.name = 'Instruments'
-    nc.save()
-
-    #np = pmod()
-    #np.category
+    
     
     
     return request.dmp.render('index.html', context)

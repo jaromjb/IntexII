@@ -1,0 +1,199 @@
+- model: catalog.category
+  pk: 1
+  fields: {last_modified: ! '2019-03-13 13:14:28.502239', name: Instruments}
+- model: catalog.category
+  pk: 2
+  fields: {last_modified: ! '2019-03-13 13:15:23.761242', name: Sheet Music}
+- model: catalog.category
+  pk: 3
+  fields: {last_modified: ! '2019-03-13 13:15:39.314572', name: Other}
+
+
+
+- model: catalog.product
+  pk: 1
+  fields: {category: 1, last_modified: ! '2019-03-13 13:33:48.957515', status: A,
+    name: Trumpet, description: apple, price: '15.00', quantity: 3, reorder_trigger: 2,
+    reorder_quantity: 2}
+- model: catalog.product
+  pk: 2
+  fields: {category: 1, last_modified: ! '2019-03-13 13:34:46.719186', status: A,
+    name: Trombone, description: apple, price: '15.00', quantity: 3, reorder_trigger: 2,
+    reorder_quantity: 2}
+- model: catalog.product
+  pk: 3
+  fields: {category: 1, last_modified: ! '2019-03-13 13:41:40.398672', status: A,
+    name: Flute, description: apple, price: '15.00', quantity: 3, reorder_trigger: 2,
+    reorder_quantity: 2}
+- model: catalog.product
+  pk: 4
+  fields: {category: 1, last_modified: ! '2019-03-13 13:42:54.024699', status: A,
+    name: Tuba, description: apple, price: '15.00', quantity: 3, reorder_trigger: 2,
+    reorder_quantity: 2}
+- model: catalog.product
+  pk: 5
+  fields: {category: 1, last_modified: ! '2019-03-13 13:43:14.083083', status: A,
+    name: Clarinet, description: apple, price: '15.00', quantity: 3, reorder_trigger: 2,
+    reorder_quantity: 2}
+- model: catalog.product
+  pk: 6
+  fields: {category: 1, last_modified: ! '2019-03-13 13:44:01.127925', status: A,
+    name: Piano, description: apple, price: '15.00', quantity: 3, reorder_trigger: 2,
+    reorder_quantity: 2}
+- model: catalog.product
+  pk: 7
+  fields: {category: 1, last_modified: ! '2019-03-13 13:45:13.951103', status: A,
+    name: Triangle, description: apple, price: '15.00', quantity: 3, reorder_trigger: 2,
+    reorder_quantity: 2}
+- model: catalog.product
+  pk: 8
+  fields: {category: 1, last_modified: ! '2019-03-13 13:45:36.265520', status: A,
+    name: Guitar, description: apple, price: '15.00', quantity: 3, reorder_trigger: 2,
+    reorder_quantity: 2}
+- model: catalog.product
+  pk: 9
+  fields: {category: 1, last_modified: ! '2019-03-13 13:46:10.841847', status: A,
+    name: Banjo, description: apple, price: '15.00', quantity: 3, reorder_trigger: 2,
+    reorder_quantity: 2}
+- model: catalog.product
+  pk: 10
+  fields: {category: 1, last_modified: ! '2019-03-13 13:46:10.865095', status: A,
+    name: Ukelele, description: apple, price: '15.00', quantity: 3, reorder_trigger: 2,
+    reorder_quantity: 2}
+- model: catalog.product
+  pk: 11
+  fields: {category: 1, last_modified: ! '2019-03-13 13:46:10.879558', status: A,
+    name: French Horn, description: apple, price: '15.00', quantity: 3, reorder_trigger: 2,
+    reorder_quantity: 2}
+- model: catalog.product
+  pk: 12
+  fields: {category: 1, last_modified: ! '2019-03-13 13:46:10.897433', status: A,
+    name: Recorder, description: apple, price: '15.00', quantity: 3, reorder_trigger: 2,
+    reorder_quantity: 2}
+- model: catalog.product
+  pk: 13
+  fields: {category: 1, last_modified: ! '2019-03-13 13:46:10.920090', status: A,
+    name: Drums, description: apple, price: '15.00', quantity: 3, reorder_trigger: 2,
+    reorder_quantity: 2}
+- model: catalog.product
+  pk: 14
+  fields: {category: 1, last_modified: ! '2019-03-13 13:50:35.397500', status: A,
+    name: Baritone, description: apple, price: '15.00', quantity: 3, reorder_trigger: 2,
+    reorder_quantity: 2}
+- model: catalog.product
+  pk: 15
+  fields: {category: 1, last_modified: ! '2019-03-13 13:52:20.823234', status: A,
+    name: Saxaphone, description: apple, price: '15.00', quantity: 3, reorder_trigger: 2,
+    reorder_quantity: 2}
+- model: catalog.product
+  pk: 16
+  fields: {category: 2, last_modified: ! '2019-03-13 13:55:23.084820', status: A,
+    name: Bach, description: apple, price: '15.00', quantity: 3, reorder_trigger: 2,
+    reorder_quantity: 2}
+- model: catalog.product
+  pk: 17
+  fields: {category: 2, last_modified: ! '2019-03-13 13:56:35.962006', status: A,
+    name: Wolfe, description: apple, price: '15.00', quantity: 3, reorder_trigger: 2,
+    reorder_quantity: 2}
+- model: catalog.product
+  pk: 18
+  fields: {category: 3, last_modified: ! '2019-03-13 13:56:43.115882', status: A,
+    name: Beethoven, description: apple, price: '15.00', quantity: 3, reorder_trigger: 2,
+    reorder_quantity: 2}
+- model: catalog.product
+  pk: 19
+  fields: {category: 3, last_modified: ! '2019-03-13 13:56:59.569551', status: A,
+    name: Drumsticks, description: apple, price: '15.00', quantity: 3, reorder_trigger: 2,
+    reorder_quantity: 2}
+- model: catalog.product
+  pk: 20
+  fields: {category: 3, last_modified: ! '2019-03-13 13:56:59.583756', status: A,
+    name: Pick, description: apple, price: '15.00', quantity: 3, reorder_trigger: 2,
+    reorder_quantity: 2}
+- model: catalog.product
+  pk: 21
+  fields: {category: 1, last_modified: ! '2019-03-13 13:56:59.595017', status: A,
+    name: Gong, description: apple, price: '15.00', quantity: 3, reorder_trigger: 2,
+    reorder_quantity: 2}
+- model: catalog.product
+  pk: 22
+  fields: {category: 1, last_modified: ! '2019-03-13 13:56:59.605038', status: A,
+    name: Tamborine, description: apple, price: '15.00', quantity: 3, reorder_trigger: 2,
+    reorder_quantity: 2}
+- model: catalog.product
+  pk: 23
+  fields: {category: 1, last_modified: ! '2019-03-13 13:56:59.617322', status: A,
+    name: Alto Saxaphone, description: apple, price: '15.00', quantity: 3, reorder_trigger: 2,
+    reorder_quantity: 2}
+
+
+
+- model: catalog.productimage
+  pk: 1
+  fields: {filename: thermometer.jpg, product: 1}
+- model: catalog.productimage
+  pk: 2
+  fields: {filename: thermostat.jpg, product: 2}
+- model: catalog.productimage
+  pk: 3
+  fields: {filename: thread.jpg, product: 3}
+- model: catalog.productimage
+  pk: 4
+  fields: {filename: tire_swing.jpg, product: 4}
+- model: catalog.productimage
+  pk: 5
+  fields: {filename: toilet.jpg, product: 5}
+- model: catalog.productimage
+  pk: 6
+  fields: {filename: tomato.jpg, product: 6}
+- model: catalog.productimage
+  pk: 7
+  fields: {filename: tooth_picks.jpg, product: 7}
+- model: catalog.productimage
+  pk: 8
+  fields: {filename: toothbrush.jpg, product: 8}
+- model: catalog.productimage
+  pk: 9
+  fields: {filename: toothpaste.jpg, product: 9}
+- model: catalog.productimage
+  pk: 10
+  fields: {filename: towel.jpg, product: 10}
+- model: catalog.productimage
+  pk: 11
+  fields: {filename: tree.jpg, product: 11}
+- model: catalog.productimage
+  pk: 12
+  fields: {filename: truck.jpg, product: 12}
+- model: catalog.productimage
+  pk: 13
+  fields: {filename: tv.jpg, product: 13}
+- model: catalog.productimage
+  pk: 14
+  fields: {filename: street_lights.jpg, product: 14}
+- model: catalog.productimage
+  pk: 15
+  fields: {filename: sun_glasses.jpg, product: 15}
+- model: catalog.productimage
+  pk: 16
+  fields: {filename: television.jpg, product: 16}
+- model: catalog.productimage
+  pk: 17
+  fields: {filename: thermometer.jpg, product: 17}
+- model: catalog.productimage
+  pk: 18
+  fields: {filename: thermostat.jpg, product: 18}
+- model: catalog.productimage
+  pk: 19
+  fields: {filename: thread.jpg, product: 19}
+- model: catalog.productimage
+  pk: 20
+  fields: {filename: tire_swing.jpg, product: 20}
+- model: catalog.productimage
+  pk: 21
+  fields: {filename: toilet.jpg, product: 21}
+- model: catalog.productimage
+  pk: 22
+  fields: {filename: tomato.jpg, product: 22}
+- model: catalog.productimage
+  pk: 23
+  fields: {filename: tooth_picks.jpg, product: 23}

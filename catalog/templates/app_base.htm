@@ -5,7 +5,7 @@
 <%block name="site_left">
     <u1 id="LeftList">
         <li><a href="/catalog/index/">All Products</a></li>
-        % for a in cats:
+        % for a in cmod.Category.objects.all():
             <a href="/catalog/index/${a.id}"><li>${a.name}</li></a><br>
         % endfor
     </u1>
