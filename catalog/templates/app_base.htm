@@ -3,10 +3,10 @@
 
 
 <%block name="site_left">
-    <u1 id="LeftList">
+    <ul id="LeftList">
         <li><a href="/catalog/index/">All Products</a></li>
-        % for a in cmod.Category.objects.all():
+        %for a in cmod.Category.objects.all():
             <a href="/catalog/index/${a.id}"><li>${a.name}</li></a><br>
-        % endfor
-    </u1>
+        %endfor
+    </ul>
 </%block>
