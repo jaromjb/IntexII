@@ -7,6 +7,37 @@ from datetime import datetime
 
 TAX_RATE = Decimal("0.05")
 
+class Prescribers(models.Model):
+    doctorID = models.IntegerField()
+    fName = models.TextField()
+    lName = models.TextField()
+    gender = models.TextField(max_length=1)
+    state = models.TextField(max_length=2)
+    credentials = models.TextField()
+    specialty = models.TextField()
+    opioid.prescriber = models.IntegerField(max_digits=1)
+    totalPrescriptions = models.IntegerField()
+
+class Overdoses(models.Model):
+    state = models.TextField()
+    population = models.IntegerField()
+    deaths = models.IntegerField()
+    abbrev = models.TextField()
+
+class  Opioids(models.Model):
+    choices = {
+    ('0', 'No'),
+    ('1', 'Yes')
+    }
+    
+    drugName = models.TextField()
+    isOpioid()  = models.TextField(db_index=True, choices= choices)
+
+class Triple(models.Model):
+    doctorID = models.ForeignKey(Prescribers, on_delete=models.CASCADE)
+    drug = models.TextField()
+    qty = models.IntegerField()
+
 # Create your models here.
 class Category(models.Model):
     last_modified = models.DateTimeField(auto_now=True)
