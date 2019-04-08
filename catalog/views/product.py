@@ -10,23 +10,44 @@ from django.conf import settings
 
 
 @view_function
-def process_request(request, product:cmod.Product):
-    if product == None:
-        cats1 = ccmod.objects.all()
-        context = {
-            'cats': cats1,
-        }
-        return request.dmp.render('index.html', context)
+def process_request(request, product:cmod.Product):    
+
+    images =[]
+    images =product.image_urls()    
+    categories = cmod.Category.objects.all()
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = cartForm(request.POST)
+        form.product = product
+        form.user = request.user
+        # check whether it's valid:
+        if form.is_valid():
+            si = cmod.SaleItem()
+            si.sale = request.user.get_shopping_cart()
+            si.product = product
+            si.quantity = form.cleaned_data.get('quantity')
+            si.price = product.price
+            si.save()
+            return HttpResponseRedirect("/catalog/cart")
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:        
+    #GET
     else:
-        cats1 = ccmod.objects.all()
-        images = product.image_urls()
-        context = {
-            'cats': cats1,
-            'product': product,
-            'images': images,
-        }
-        return request.dmp.render('product.html', context)
-        
+        form = cartForm()                
+    context={
+        'images':images,
+        'product':product,
+        'categories':categories,
+        'form':form
+    }
+    return request.dmp.render('product.html', context)
+
+
+
+class cartForm(forms.Form):
+    quantity = forms.IntegerField(label="Quantity", min_value=0)
+
 @view_function        
 def tile(request, product:cmod.Product):
     context = {
