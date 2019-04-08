@@ -13,10 +13,15 @@ class Prescribers(models.Model):
     lName = models.TextField()
     gender = models.TextField(max_length=1)
     state = models.TextField(max_length=2)
-    credentials = models.TextField()
+    credentials = models.TextField(null=True)
     specialty = models.TextField()
-    opioid.prescriber = models.IntegerField(max_digits=1)
+    opioid_prescriber = models.IntegerField()
     totalPrescriptions = models.IntegerField()
+
+class Triple(models.Model):
+    doctorID = models.IntegerField()
+    drug = models.TextField()
+    qty = models.IntegerField()
 
 class Overdoses(models.Model):
     state = models.TextField()
@@ -31,12 +36,9 @@ class  Opioids(models.Model):
     }
     
     drugName = models.TextField()
-    isOpioid()  = models.TextField(db_index=True, choices= choices)
+    isOpioid  = models.TextField(db_index=True, choices= choices)
 
-class Triple(models.Model):
-    doctorID = models.ForeignKey(Prescribers, on_delete=models.CASCADE)
-    drug = models.TextField()
-    qty = models.IntegerField()
+
 
 # Create your models here.
 class Category(models.Model):
