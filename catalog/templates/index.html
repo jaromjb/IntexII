@@ -7,8 +7,12 @@
     <h1 class="text-center">${ 'Products' if category is None else category.name }</h1>
 
     <div id="catalog">
-        %for p in prods:
-            <span class="product-container" data-product-id="${ p.id }"></span>
+        %for p in presc:
+            <span class="product-container" data-product-id="${ p.id }">
+                <a href="/catalog/prescribers/${p.id}/">
+                    <p>${p.fName}  ${p.lName}</p>
+                </a>
+            </span>
         %endfor
     </div>
 

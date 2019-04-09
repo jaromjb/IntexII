@@ -7,14 +7,19 @@ from catalog.models import Category as ccmod
 from catalog import models as cmod
 from catalog.models import Product as pmod
 from django.conf import settings
-
+from catalog.models import Prescribers as ppmod
+from catalog.models import Triple as tmod
+import psycopg2
 
 @view_function
-def process_request(request, product:cmod.Product):    
+def process_request(request, prescribers:cmod.Prescribers):    
 
-    images =[]
-    images =product.image_urls()    
-    categories = cmod.Category.objects.all()
+   
+    drugs =[]
+    
+    drugs = cmod.Triple.objects.filter(doctorID = prescribers.doctorID).order_by('qty')[:10]
+    triple = tmod.objects.all()
+    
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         form = cartForm(request.POST)
@@ -35,13 +40,13 @@ def process_request(request, product:cmod.Product):
     #GET
     else:
         form = cartForm()                
-    context={
-        'images':images,
-        'product':product,
-        'categories':categories,
-        'form':form
+    context={       
+        'prescribers':prescribers,
+        'form':form,
+        'drugs':drugs,
+        'triple':triple,
     }
-    return request.dmp.render('product.html', context)
+    return request.dmp.render('prescribers.html', context)
 
 
 
@@ -51,6 +56,6 @@ class cartForm(forms.Form):
 @view_function        
 def tile(request, product:cmod.Product):
     context = {
-        'product': product,
+        'product': product,        
     }
     return request.dmp.render('product.tile.html', context)

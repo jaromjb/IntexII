@@ -1,0 +1,19 @@
+<%inherit file="app_base.htm" />
+
+<%block name="site_center">
+
+    <div id="catalog">
+            <h1>${prescribers.fName} ${prescribers.lName}</h1>
+            <h3>Gender: ${prescribers.gender}</h3>
+            <h3>Credentials: ${prescribers.credentials}</h3>
+            <h3>Location: ${prescribers.state}</h3>
+            <h3>Specialty: ${prescribers.specialty}</h3><br><br>
+            <h2>Top prescribed drugs by Dr. ${prescribers.lName}</h2>
+        %for drug in drugs:
+            <a href="${drug.id}">
+            <h3>${drug.drug}</h3>
+            </a>
+        %endfor
+    </div>
+
+</%block>
