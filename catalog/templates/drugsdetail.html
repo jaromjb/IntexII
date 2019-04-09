@@ -1,0 +1,19 @@
+<%inherit file="app_base.htm" />
+
+<%block name="site_center">
+
+    <div id="catalog">
+            <h1>${opioids.drugName}</h1>
+            %if value == 1:
+                <h1>This drug is an opiate</h1>
+            %elif value == 0:
+                <h1>This drug is not an opiate</h1>
+            %endif
+            %for drug in topPrescribers:
+                <a href="${drug.id}">
+                <h3>${drug.qty}</h3>
+                </a>
+            %endfor
+    </div>
+
+</%block>

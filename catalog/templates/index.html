@@ -4,22 +4,14 @@
 
 <%block name="site_center">
 
-    <h1 class="text-center">${ 'Products' if category is None else category.name }</h1>
-
-    <div id="catalog">
-        %for p in presc:
-            <span class="product-container" data-product-id="${ p.id }">
-                <a href="/catalog/prescribers/${p.id}/">
-                    <p>${p.fName}  ${p.lName}</p>
-                </a>
-            </span>
-        %endfor
-    </div>
-
-    <div id="paginator">
-        <a class="btn btn-default" href="/catalog/index/${ '' if category is None else category.id }/${ (page - 1) if page > 1 else '' }">Previous Page</a>
-        <a class="btn btn-default" href="/catalog/index/${ '' if category is None else category.id }/${ (page + 1) if page < numpages else '' }">Next Page</a>
-    </div>
+    <a href="/catalog/prescribers/">
+    <h1 class="text-center">Prescribers</h1>
+    </a>
+    <a href="/catalog/drugs/">
+        <h1 class="text-center">Drugs</h1>
+    </a>
+    
 </%block>
+
 
 

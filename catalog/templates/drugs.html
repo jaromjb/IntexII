@@ -1,0 +1,26 @@
+<%inherit file="app_base.htm" />
+
+
+
+<%block name="site_center">
+
+    <h1 class="text-center">Drugs</h1>
+
+    <div id="catalog">
+        %for p in drugs:
+            <span class="product-container" data-product-id="${ p.id }">
+                <a href="/catalog/drugsdetail/${p.id}/">
+                    <p>${p.drugName}</p>
+                </a>
+            </span>
+        %endfor
+    </div>
+
+    <div id="paginator">
+        <a class="btn btn-default" href="/catalog/drugs/${ (page - 1) if page > 1 else '' }">Previous Page</a>
+        <a class="btn btn-default" href="/catalog/drugs/${ (page + 1) if page < numpages else '' }">Next Page</a>
+    </div>
+</%block>
+
+
+

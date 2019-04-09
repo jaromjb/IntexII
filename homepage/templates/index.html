@@ -1,10 +1,35 @@
 <%inherit file="app_base.htm" />
-
 <%block name="title">Homepage</%block>
-
 <%block name="site_center">
-    <div class="content">
-        <h3>Congratulations -- you've successfully created a new DMP app!</h3>
-        <h4 class="utc-time">Current time in UTC: ${ utc_time }</h4>
+    <div class="container">
+        <center><h3 id="title"><b>Drug Prescription Search Engine</b></h3></center>
+        <br>
+        
+        <div class="input-group">
+                <select class="custom-select" id="searchDrug">
+                  <option selected>Select a Drug Name...</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>            
+        </div>
+        <br>
+        <div class="input-group">
+                <select class="custom-select" id="prescriberSpecialty">
+                        <option selected>Select a Specialty...</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                </select>
+                &nbsp; &nbsp;
+                <select class="custom-select" id="searchPrescriber">
+                        <option selected>Select a Prescriber...</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                </select> 
+        </div>
+        <br>
+        <center><button type="submit" id="submit" class="btn btn-primary">Search</button></center>
     </div>
 </%block>

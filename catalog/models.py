@@ -24,14 +24,9 @@ class Overdoses(models.Model):
     deaths = models.IntegerField()
     abbrev = models.TextField()
 
-class  Opioids(models.Model):
-    choices = {
-    ('0', 'No'),
-    ('1', 'Yes')
-    }
-    
+class  Opioids(models.Model):  
     drugName = models.TextField()
-    isOpioid  = models.TextField(db_index=True, choices= choices)
+    isOpioid  = models.IntegerField()
 
 class Triple(models.Model):
     doctorID = models.IntegerField()
