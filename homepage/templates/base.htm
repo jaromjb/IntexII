@@ -35,6 +35,12 @@
                 </li>
                 <li class="nav-item">
                         <a class="nav-link ${ 'active' if request.dmp.page == 'about' else ''}" href ="/about/">About</a>
+                </li>
+                <li class="nav-item">
+                        <a class="nav-link ${ 'active' if request.dmp.page == 'about' else ''}" href ="/catalog/prescribers">Prescribers</a>
+                </li>
+                <li class="nav-item">
+                        <a class="nav-link ${ 'active' if request.dmp.page == 'about' else ''}" href ="/catalog/drugs">Drugs</a>
                 </li>                       
               </ul>
               <ul class="navbar-nav ">
@@ -84,12 +90,12 @@
                     <main>
                         <div id="site_left">
                             <%block name="site_left">
-                            Left side
+
                             </%block>
                         </div>
                         <div id="site_center">
                             <%block name="site_center">
-                            Center
+
                             </%block>
                         </div>
                         <div id="site_right">

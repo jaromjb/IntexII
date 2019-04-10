@@ -1,30 +1,37 @@
 html, body {
   margin: 0;
   padding: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: #777788;
 }
+
 nav {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
+
 h3 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
+
 form {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
+
 .clearfix {
   clear: both;
 }
+
 #maintenance_message {
   position: fixed;
   width: auto;
   z-index: 100;
 }
+
 header {
   padding: 20px 20px;
   text-align: center;
 }
+
 header > .title {
   display: inline-block;
   color: #3771A1;
@@ -32,17 +39,20 @@ header > .title {
   font-weight: bold;
   text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
   vertical-align: middle;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
+
 header img {
   vertical-align: middle;
   margin-right: 24px;
 }
+
 main {
   position: relative;
   margin: 0;
   padding: 0;
 }
+
 main #site_left {
   position: absolute;
   left: 0;
@@ -50,10 +60,12 @@ main #site_left {
   width: 200px;
   height: 300px;
 }
+
 main #site_center {
   margin-left: 200px;
   margin-right: 200px;
 }
+
 main #site_right {
   position: absolute;
   right: 0;
@@ -61,31 +73,35 @@ main #site_right {
   width: 200px;
   height: 300px;
 }
+
 footer {
   margin-top: 40px;
   border-top: 1px solid #CCCCCC;
   text-align: right;
 }
+
 footer a {
   display: inline-block;
   color: #777788;
   margin: 15px 10% 0 0;
 }
+
 #LeftList {
   list-style-type: none;
   text-align: left;
 }
+
 #submit {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   display: inline-block;
   font-weight: 600;
   color: white;
   text-align: center;
   vertical-align: middle;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   background-color: black;
   border: 0 solid transparent;
   padding: 0.75rem 2rem;
@@ -97,43 +113,70 @@ footer a {
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
 }
+
 /*# sourceMappingURL=base.scss.css.map */
 /* Simple CSS3 Fade-in Animation */
-@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-.fadeIn {
-  opacity:0;
-  -webkit-animation:fadeIn ease-in 1;
-  -moz-animation:fadeIn ease-in 1;
-  animation:fadeIn ease-in 1;
-  -webkit-animation-fill-mode:forwards;
-  -moz-animation-fill-mode:forwards;
-  animation-fill-mode:forwards;
-  -webkit-animation-duration:1s;
-  -moz-animation-duration:1s;
-  animation-duration:1s;
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
+@-moz-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.fadeIn {
+  opacity: 0;
+  -webkit-animation: fadeIn ease-in 1;
+  -moz-animation: fadeIn ease-in 1;
+  animation: fadeIn ease-in 1;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  animation-duration: 1s;
+}
+
 .fadeIn.first {
   -webkit-animation-delay: 0.4s;
   -moz-animation-delay: 0.4s;
   animation-delay: 0.4s;
 }
+
 .fadeIn.second {
   -webkit-animation-delay: 0.6s;
   -moz-animation-delay: 0.6s;
   animation-delay: 0.6s;
 }
+
 .fadeIn.third {
   -webkit-animation-delay: 0.8s;
   -moz-animation-delay: 0.8s;
   animation-delay: 0.8s;
 }
+
 .fadeIn.fourth {
   -webkit-animation-delay: 1s;
   -moz-animation-delay: 1s;
   animation-delay: 1s;
 }
+
 /* Simple CSS3 Fade-in Animation */
 .underlineHover:after {
   display: block;
@@ -145,12 +188,15 @@ footer a {
   content: "";
   transition: width 0.2s;
 }
+
 .underlineHover:hover {
   color: #0d0d0d;
 }
-.underlineHover:hover:after{
+
+.underlineHover:hover:after {
   width: 100%;
 }
+
 .btn {
   display: inline-block;
   font-weight: 600;
@@ -158,9 +204,9 @@ footer a {
   text-align: center;
   vertical-align: middle;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   background-color: transparent;
   border: 0 solid transparent;
   padding: 0.75rem 2rem;
@@ -173,3 +219,4 @@ footer a {
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
 }
 
+/*# sourceMappingURL=login.scss.css.map */

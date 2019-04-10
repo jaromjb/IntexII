@@ -10,19 +10,27 @@ from catalog.models import Product as pmod
 from catalog.models import Prescribers as ppmod
 import math
 from catalog.models import Opioids as omod
+from django.db.models import Q
 
 ITEMS_PER_PAGE = 50
 @view_function
 def process_request(request, page:int=1):
-    
+    if request.user.is_authenticated:
+
+        drugs = omod.objects.all()
+        search_term = ''
+
+        if 'search' in request.GET:
+            search_term = request.GET['search']
+            drugs = drugs.filter(Q(drugName__icontains=search_term) | Q(isOpioid__icontains=search_term)) 
         
-    
-    drugs = omod.objects.all()
-    drugs1 = drugs[(page - 1) * ITEMS_PER_PAGE: page * ITEMS_PER_PAGE]
-    context = {
-        
-        'page': page,
-        'numpages': math.ceil(drugs.count() / ITEMS_PER_PAGE),
-        'drugs': drugs1,
-    }
-    return request.dmp.render('drugs.html', context)
+        drugs1 = drugs[(page - 1) * ITEMS_PER_PAGE: page * ITEMS_PER_PAGE]
+        context = {
+            
+            'page': page,
+            'numpages': math.ceil(drugs.count() / ITEMS_PER_PAGE),
+            'drugs': drugs1,
+        }
+        return request.dmp.render('drugs.html', context)
+    else:
+        return HttpResponseRedirect("/account/login")

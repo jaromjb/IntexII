@@ -9,19 +9,27 @@ from catalog.models import Category as ccmod
 from catalog.models import Product as pmod
 from catalog.models import Prescribers as ppmod
 import math
+from django.db.models import Q
 
 ITEMS_PER_PAGE = 50
 @view_function
 def process_request(request, page:int=1):
-    
+    if request.user.is_authenticated:
+
+        presc = ppmod.objects.all()
+        search_term = ''
+
+        if 'search' in request.GET:
+            search_term = request.GET['search']
+            presc = presc.filter(Q(fName__icontains=search_term) | Q(lName__icontains=search_term) | Q(gender__icontains=search_term)| Q(credentials__icontains=search_term) | Q(state__icontains=search_term) | Q(specialty__icontains=search_term)) 
         
-    
-    presc = ppmod.objects.all()
-    presc1 = presc[(page - 1) * ITEMS_PER_PAGE: page * ITEMS_PER_PAGE]
-    context = {
-        
-        'page': page,
-        'numpages': math.ceil(presc.count() / ITEMS_PER_PAGE),
-        'presc': presc1,
-    }
-    return request.dmp.render('prescribers.html', context)
+        presc1 = presc[(page - 1) * ITEMS_PER_PAGE: page * ITEMS_PER_PAGE]
+        context = {            
+            'page': page,
+            'numpages': math.ceil(presc.count() / ITEMS_PER_PAGE),
+            'presc': presc1,
+            'search_term':search_term,
+        }
+        return request.dmp.render('prescribers.html', context)
+    else:
+        return HttpResponseRedirect("/account/login")

@@ -3,23 +3,53 @@
 
 
 <%block name="site_center">
+    <div class="container">
+            <input type=button value="Back" onClick="javascript:history.go(-1);">
+            <h1 class="text-center">Prescribers</h1>
 
-    <h1 class="text-center">Prescribers</h1>
+            <form class="row justify-content-md-center form-inline my-2 my-lg-0">
+                <input 
+                class="form-control mr-sm-2" 
+                type="text" 
+                placeholder="Search"
+                aria-label="Search"
+                name='search'
+                value="${search_term}">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        <div id="span3" class="span3">
+            <table class="table table-hover" >
+                <thead>
+                    <tr class="col">
+                        <th>#</th>
+                        <th>Prescriber Name</th>
+                <!-- <tr class="col col-lg-6 col-md-3 col-sm-4"> -->
+                </tr>  
+                </thead>      
+                <tbody>
+                    %for p in presc:
+                    <tr style ="word-break:break-all;">
+                        <th>${p.id}</th>
+                        <td class="product-container" data-product-id="${ p.id }">
+                                <a style="text-decoration : none;" href="/catalog/prescribersdetail/${p.id}/">
+                                    <p>${p.fName}  ${p.lName}</p>
+                                </a>
+                        </td>
+                    </tr>              
+                    %endfor
+                </tbody>
+            </table>
+        </div>
 
-    <div id="catalog">
-        %for p in presc:
-            <span class="product-container" data-product-id="${ p.id }">
-                <a href="/catalog/prescribersdetail/${p.id}/">
-                    <p>${p.fName}  ${p.lName}</p>
-                </a>
-            </span>
-        %endfor
-    </div>
-
-    <div id="paginator">
-        <a class="btn btn-default" href="/catalog/prescribers/${ (page - 1) if page > 1 else '' }">Previous Page</a>
-        <a class="btn btn-default" href="/catalog/prescribers/${ (page + 1) if page < numpages else '' }">Next Page</a>
-    </div>
+        <br>
+            <nav aria-label="Page navigation example" class="align-self-center">
+                <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="/catalog/prescribers/${ (page - 1) if page > 1 else '' }">Previous Page</a></li>
+                        <li class="page-item"><a class="page-link" href="/catalog/prescribers/${ (page + 1) if page < numpages else '' }">Next Page</a></li>
+                </ul>                
+            </nav>
+        <br>
+    </div>    
 </%block>
 
 
