@@ -1,29 +1,23 @@
 <%inherit file="app_base.htm" />
 
 <%block name="site_center">
-
-
-    <div class="container wrapper fadeInDown">
-        <div id="formContent">
-          <!-- Tabs Titles -->
-      
-          <!-- Login Form -->
-          <form method="POST" class="fadeIn first">
-            <table class="fadeIn second">
-                ${ form.as_table() }
-            </table>
-            <br>
-            <center><button type="submit" id="submit" class="btn btn-primary">Log In</button></center>
-            <br>
-          </form>
-      
-          <!-- Remind Passowrd -->
-          <div id="formFooter" class="fadeIn fourth">
-            <a href="#">Forgot Password?</a>
-          </div>
-      
-        </div>
-    </div>
-    
+    <div class="container ">
+        <form method="POST" style="margin-top: 80px">
+        <center><h3><b>Log In</b></h3></center>
+        
+        <div class="row justify-content-md-center" style="margin-top: 40px">       
+                <div>
+                    <table class="fadeIn second">
+                        ${ form.as_table() }
+                    </table>
+                    <br>
+                </div>
+                <br>
+        </div>      
+        <div class="justify-content-md-center">
+            <center><button type="submit" id="submit" class="font-weight-light btn btn-outline-secondary" style="width:100px">Log In</button></center>          
+        </div>  
+        </form>
+      </div>  
 
 </%block>

@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.urls import path, include
 
 urlpatterns = [
     # the built-in Django administrator
     url(r'^admin/', admin.site.urls),
-
+    #path('', include('prescribers.urls')),
     # urls for any third-party apps go here
 
     # the DMP router - this should normally be the last URL listed

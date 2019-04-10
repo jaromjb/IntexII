@@ -1,24 +1,28 @@
 <%inherit file="app_base.htm" />
 <%block name="title">Contact</%block>
 <%block name="site_center">
-<form method="POST">
-    <center><h3 id="title1"><b>Contact Us</b></h3></center>
-    <br>
-    <div class="row justify-content-md-center">       
-            <div class="form-group col-12 col-md-8">
-                    <label for="inputName">Your name</label>
-                    <input type="text" class="form-control" id="inputName" placeholder="Enter your name" >
-            </div>
-            <br>
-            <div class="form-group col-12 col-md-8">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="inputEmail1" aria-describedby="emailHelp" placeholder="Enter email" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
-            <br>
-    </div>      
-    <div class="justify-content-md-center">
-        <center><button type="submit" id="submit" class="btn btn-primary">Submit</button></center>            
-    </div>  
-</form>
+        <div class="container">
+                <form method="POST" style="margin-top: 80px">
+                <center><h3><b>Contact Us</b></h3></center>
+                <br>
+                <center><p class="lead">Thank you for interesting in our product and reach out to us. We will reply your message as soon as possible.</p></center>
+                
+                <div class="row justify-content-md-center" style="margin-top: 40px">       
+                        <div class="form-group col-12 col-md-8">
+                                <label for="inputName">Your name</label>
+                                <input type="text" class="form-control" id="inputName" placeholder="Enter your name" >
+                        </div>
+                        <br>
+                        <div class="form-group col-12 col-md-8">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input type="email" class="form-control" id="inputEmail1" aria-describedby="emailHelp" placeholder="Enter email" >
+                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                        <br>
+                </div>      
+                <div class="justify-content-md-center">
+                        <center><button type="button" class="font-weight-light btn btn-outline-secondary" id="start">Submit</button></center>           
+                </div>  
+                </form>
+        </div>
 </%block>
