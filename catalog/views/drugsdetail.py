@@ -18,6 +18,9 @@ def process_request(request, opioids:cmod.Opioids):
 
     if request.user.is_authenticated:
 
+        listdrugs=cmod.Triple.objects.filter(drug=opioids.id).order_by('-qty')[:10]
+        prescribers = cmod.Prescribers.objects.all()
+
         topPrescribers =[]
         drugs = []
         triple = tmod.objects.all()    
@@ -68,8 +71,10 @@ def process_request(request, opioids:cmod.Opioids):
             'triple':triple,
             'opioids': opioids,
             'omod':omod,
+            'prescribers':prescribers,
             'value':value,
             'drugs':drugs,
+            'listdrugs':listdrugs,
         }
         return request.dmp.render('drugsdetail.html', context)
     else:

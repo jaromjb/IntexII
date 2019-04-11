@@ -279,3 +279,8 @@ a:focus, a:hover {
 .text-primary {
   color: #64a19d !important;
 }
+
+.footer {
+  height: 20px;
+  padding: 3rem 0;
+}

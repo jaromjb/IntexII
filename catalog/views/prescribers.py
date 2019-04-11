@@ -10,6 +10,7 @@ from catalog.models import Product as pmod
 from catalog.models import Prescribers as ppmod
 import math
 from django.db.models import Q
+import requests
 
 ITEMS_PER_PAGE = 50
 @view_function

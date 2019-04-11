@@ -8,10 +8,15 @@ from datetime import datetime
 TAX_RATE = Decimal("0.05")
 
 class Prescribers(models.Model):
-    doctorID = models.IntegerField()
+    doctorID = models.IntegerField(primary_key=True)
     fName = models.TextField()
     lName = models.TextField()
-    gender = models.TextField(max_length=1)
+    gender = models.TextField(max_length=1, default='O',
+       choices=(
+       ('M', 'Male'),
+       ('F', 'Female'),
+       ('O', 'Other/Unknown'),
+    ),)
     state = models.TextField(max_length=2)
     credentials = models.TextField(null=True)
     specialty = models.TextField()
@@ -29,8 +34,8 @@ class  Opioids(models.Model):
     isOpioid  = models.IntegerField()
 
 class Triple(models.Model):
-    doctorID = models.IntegerField()
-    drug = models.TextField()
+    doctor = models.ForeignKey(Prescribers, on_delete=models.CASCADE)
+    drug = models.ForeignKey(Opioids, on_delete=models.CASCADE)
     qty = models.IntegerField()
 
 # Create your models here.

@@ -107,7 +107,7 @@ AUTH_USER_MODEL = 'account.User' #tells django to get my user
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'sprint2',
+        'NAME': 'IntexII',
         'USER': 'postgres',
         'PASSWORD': 'Geneve16!',
         'HOST': 'localhost',

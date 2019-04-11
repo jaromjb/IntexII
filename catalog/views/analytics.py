@@ -10,9 +10,12 @@ from catalog.models import Product as pmod
 from catalog.models import Prescribers as ppmod
 import math
 from django.db.models import Q
+from django.contrib.auth.decorators import permission_required
+
 
 
 @view_function
+@permission_required('user.can_view')
 def process_request(request, page:int=1):
     if request.user.is_authenticated:
 

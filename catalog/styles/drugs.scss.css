@@ -4,6 +4,11 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-grayscale/blob/master/LICENSE)
  */
 
+ .footer {
+  height: 20px;
+  padding: 3rem 0;
+}
+
  h3 {
   color: black;
 }

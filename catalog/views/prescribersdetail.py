@@ -14,19 +14,23 @@ import requests
 
 
 @view_function
-def process_request(request, prescribers:cmod.Prescribers):    
+def process_request(request, prescriberID=int):    
     if request.user.is_authenticated:
- 
-        drugs =[]
         
-        drugs = cmod.Triple.objects.filter(doctorID = prescribers.doctorID).order_by('qty')[:10]
-        triple = tmod.objects.all()
+        pid = prescriberID
+        p=cmod.Prescribers.objects.get(doctorID=prescriberID)
+
+        drugs =[]
+        drugs = cmod.Triple.objects.filter(doctor = pid).order_by('-qty')[:10]
+        #triple = tmod.objects.filter(doctor = prescriberID)
+        #value = opioid_prescriber
+        
         
         url = "https://ussouthcentral.services.azureml.net/workspaces/807deeba78eb4852b9eb668561bb0ef8/services/21a1090cc4fc41f9b11aeab5702e9f87/execute"
 
         querystring = {"api-version":"2.0","details":"true"}
 
-        payload = "{\r\n  \"Inputs\": {\r\n    \"input1\": {\r\n      \"ColumnNames\": [\r\n        \"prescribers.id\",\r\n        \"prescribers.doctorID\",\r\n        \""+ prescribers.fName +"\",\r\n        \""+ prescribers.lName +"\",\r\n        \""+ prescribers.gender +"\",\r\n        \""+ prescribers.state +"\",\r\n        \""+ prescribers.credentials + "\",\r\n        \""+ prescribers.specialty + "\",\r\n        \"prescribers.opioid_prescriber\",\r\n        \"prescribers.totalPrescriptions\"\r\n      ],\r\n      \"Values\": [\r\n        [\r\n          \"0\",\r\n          \"0\",\r\n          \"value\",\r\n          \"value\",\r\n          \"value\",\r\n          \"value\",\r\n          \"value\",\r\n          \"value\",\r\n          \"0\",\r\n          \"0\"\r\n        ]\r\n      ]\r\n    }\r\n  },\r\n  \"GlobalParameters\": {}\r\n}"
+        #payload = "{\r\n  \"Inputs\": {\r\n    \"input1\": {\r\n      \"ColumnNames\": [\r\n        \"prescribers.id\",\r\n        \"prescribers.doctorID\",\r\n        \""+ prescribers.fName +"\",\r\n        \""+ prescribers.lName +"\",\r\n        \""+ prescribers.gender +"\",\r\n        \""+ prescribers.state +"\",\r\n        \""+ prescribers.credentials + "\",\r\n        \""+ prescribers.specialty + "\",\r\n        \"prescribers.opioid_prescriber\",\r\n        \"prescribers.totalPrescriptions\"\r\n      ],\r\n      \"Values\": [\r\n        [\r\n          \"0\",\r\n          \"0\",\r\n          \"value\",\r\n          \"value\",\r\n          \"value\",\r\n          \"value\",\r\n          \"value\",\r\n          \"value\",\r\n          \"0\",\r\n          \"0\"\r\n        ]\r\n      ]\r\n    }\r\n  },\r\n  \"GlobalParameters\": {}\r\n}"
         headers = {
             'Authorization': "Bearer 1gngtevU4h0YBW58WJvNM7n13VkJs2WTIrMU2F7+eQLbiHJo5NjXijclBi/dTk8am6nhRjQpJzXQZwifCCAx9g==",
             'Content-Type': "application/json",
@@ -34,35 +38,18 @@ def process_request(request, prescribers:cmod.Prescribers):
             'Postman-Token': "0cb58e05-0b65-46ea-af30-849998a2e4f3"
             }
 
-        response = requests.request("POST", url, data=payload, headers=headers, params=querystring)
+        #response = str(requests.request("POST", url, data=payload, headers=headers, params=querystring))
 
-        print(response.text)
+       # print(response)
 
-        if request.method == 'POST':
-            # create a form instance and populate it with data from the request:
-            form = cartForm(request.POST)
-            form.product = product
-            form.user = request.user
-            # check whether it's valid:
-            if form.is_valid():
-                si = cmod.SaleItem()
-                si.sale = request.user.get_shopping_cart()
-                si.product = product
-                si.quantity = form.cleaned_data.get('quantity')
-                si.price = product.price
-                si.save()
-                return HttpResponseRedirect("/catalog/cart")
-                # process the data in form.cleaned_data as required
-                # ...
-                # redirect to a new URL:        
-        #GET
-        else:
-            form = cartForm()                
+        
         context={       
-            'prescribers':prescribers,
-            'form':form,
+            #'prescribers':prescribers,
             'drugs':drugs,
-            'triple':triple,
+            #'triple':triple,
+            'pid': pid,
+            'p':p,
+            #'value':value,
         }
 
 

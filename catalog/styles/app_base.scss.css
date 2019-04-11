@@ -94,16 +94,6 @@
   }
 }
 
-.carousel-item {
-  height: 80vh;
-  min-height: 350px;
-  background: no-repeat center center scroll;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
 
 @media (min-width: 768px) {
   .masthead h1 {
@@ -278,4 +268,16 @@ a:focus, a:hover {
 
 .text-primary {
   color: #64a19d !important;
+}
+
+.wrapper {
+  min-height: 100%;
+
+  /* Equal to height of footer */
+  /* But also accounting for potential margin-bottom of last child */
+  margin-bottom: -50px;
+}
+.footer,
+.push {
+  height: 50px;
 }

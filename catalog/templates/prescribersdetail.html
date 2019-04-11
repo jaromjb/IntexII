@@ -5,18 +5,27 @@
             <input class="btn btn-secondary my-2 my-sm-0" type=button value="Back" onClick="javascript:history.go(-1);">
             <div id="catalog">
                 <br>
-                    <h1>${prescribers.fName} ${prescribers.lName}</h1>
+                    <h1>${p.fName} ${p.lName}</h1>
                     <br>
                     <h2>Personal Information</h2>
-                    <h3>Gender: ${prescribers.gender}</h3>
-                    <h3>Credentials: ${prescribers.credentials}</h3>
-                    <h3>Location: ${prescribers.state}</h3>
-                    <h3>Specialty: ${prescribers.specialty}</h3><br><br>
+                    <h3>Gender: ${p.gender}</h3>
+                    <h3>Credentials: ${p.credentials}</h3>
+                    <h3>Location: ${p.state}</h3>
+                    <h3>Specialty: ${p.specialty}</h3>
 
-                    <h2>Top prescribed drugs by Dr. ${prescribers.lName}</h2>
+                    %if value == 1:
+                        <h3>Opioid Prescriber: Yes</h3>
+                    %elif value == 0:
+                        <h3>Opioid Prescriber: No</h3>
+                    %endif
+                    <br><br>
+
+                    <h2>Top prescribed drugs by Dr. ${p.lName}</h2>
                 %for drug in drugs:
-                    <a href="${drug.id}">
-                    <h3>${drug.drug}</h3>
+                    <a href="/catalog/drugsdetail/${drug.drug.id}">
+                    <h3>${drug.drug.drugName.lower().capitalize()} - prescribed ${drug.qty} times</h3>
+                    <h3></h3>
+
                     </a>
                 %endfor
             </div>
