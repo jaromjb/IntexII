@@ -22,7 +22,7 @@ def process_request(request, page:int=1):
 
         if 'search' in request.GET:
             search_term = request.GET['search']
-            presc = presc.filter(Q(fName__icontains=search_term) | Q(lName__icontains=search_term) | Q(gender__icontains=search_term)| Q(credentials__icontains=search_term) | Q(state__icontains=search_term) | Q(specialty__icontains=search_term)) 
+            presc = presc.filter(Q(doctorID__icontains=search_term) | Q(fName__icontains=search_term) | Q(lName__icontains=search_term) | Q(gender__icontains=search_term)| Q(credentials__icontains=search_term) | Q(state__icontains=search_term) | Q(specialty__icontains=search_term)) 
         
         presc1 = presc[(page - 1) * ITEMS_PER_PAGE: page * ITEMS_PER_PAGE]
         context = {            

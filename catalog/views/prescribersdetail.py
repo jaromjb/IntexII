@@ -11,44 +11,61 @@ from catalog.models import Prescribers as ppmod
 from catalog.models import Triple as tmod
 import http.client
 import requests
-
+import json
 
 @view_function
-def process_request(request, prescriberID=int):    
+def process_request(request, doctorID=int):    
     if request.user.is_authenticated:
         
-        pid = prescriberID
-        p=cmod.Prescribers.objects.get(doctorID=prescriberID)
+        pid = doctorID
+        p=cmod.Prescribers.objects.get(doctorID=doctorID)
 
         drugs =[]
         drugs = cmod.Triple.objects.filter(doctor = pid).order_by('-qty')[:10]
         #triple = tmod.objects.filter(doctor = prescriberID)
-        #value = opioid_prescriber
+        #value = opioid_prescriber       
         
-        
-        url = "https://ussouthcentral.services.azureml.net/workspaces/807deeba78eb4852b9eb668561bb0ef8/services/21a1090cc4fc41f9b11aeab5702e9f87/execute"
+       
+        url = "https://ussouthcentral.services.azureml.net/workspaces/4328226122df4cf8be6a08eed8f2b3ce/services/95aa126b53374f5487ab51dba899e180/execute"
 
         querystring = {"api-version":"2.0","details":"true"}
 
-        #payload = "{\r\n  \"Inputs\": {\r\n    \"input1\": {\r\n      \"ColumnNames\": [\r\n        \"prescribers.id\",\r\n        \"prescribers.doctorID\",\r\n        \""+ prescribers.fName +"\",\r\n        \""+ prescribers.lName +"\",\r\n        \""+ prescribers.gender +"\",\r\n        \""+ prescribers.state +"\",\r\n        \""+ prescribers.credentials + "\",\r\n        \""+ prescribers.specialty + "\",\r\n        \"prescribers.opioid_prescriber\",\r\n        \"prescribers.totalPrescriptions\"\r\n      ],\r\n      \"Values\": [\r\n        [\r\n          \"0\",\r\n          \"0\",\r\n          \"value\",\r\n          \"value\",\r\n          \"value\",\r\n          \"value\",\r\n          \"value\",\r\n          \"value\",\r\n          \"0\",\r\n          \"0\"\r\n        ]\r\n      ]\r\n    }\r\n  },\r\n  \"GlobalParameters\": {}\r\n}"
+        payload = "{\r\n  \"Inputs\": {\r\n    \"input1\": {\r\n      \"ColumnNames\": [\r\n        \"DoctorID\",\r\n        \"Drug\",\r\n        \"Qty\"\r\n      ],\r\n      \"Values\": [\r\n        [\r\n          \""+ doctorID +"\",\r\n          \"value\",\r\n          \"0\"\r\n        ]\r\n      ]\r\n    }\r\n  },\r\n  \"GlobalParameters\": {}\r\n}"
         headers = {
-            'Authorization': "Bearer 1gngtevU4h0YBW58WJvNM7n13VkJs2WTIrMU2F7+eQLbiHJo5NjXijclBi/dTk8am6nhRjQpJzXQZwifCCAx9g==",
             'Content-Type': "application/json",
+            'Authorization': "Bearer UevIlM8Lj/3C1afRNcpOU4A2BMVHvUQ9Wvq9N5cdTbqy3iEb8c8npVR7VQbdj/oOQg1XQKvSZRl3qYLVTU+N7g==",
             'cache-control': "no-cache",
-            'Postman-Token': "0cb58e05-0b65-46ea-af30-849998a2e4f3"
+            'Postman-Token': "57da012c-c1ef-48ea-8a76-efc724b7188f"
             }
 
-        #response = str(requests.request("POST", url, data=payload, headers=headers, params=querystring))
+        response = requests.request("POST", url, data=payload, headers=headers, params=querystring)
+        print("__>>>>>>>")
+        print(response.text)
 
-       # print(response)
+        recommender=response.text
 
+        parsed_json = json.loads(recommender)
         
+        prediction=parsed_json["Results"]["output1"]["value"]["Values"]
+        prediction=str(prediction)
+        prediction=prediction.replace("[", "").replace("]", "").replace("\'", "").replace(" ","")
+        prediction=prediction.split(",")
+        
+        rec=[]
+        for item in prediction:
+            if item!=doctorID:
+                recp=cmod.Prescribers.objects.get(doctorID=item)
+                rec.append(recp)
+        recommender=rec
+
         context={       
             #'prescribers':prescribers,
             'drugs':drugs,
             #'triple':triple,
             'pid': pid,
             'p':p,
+            'prediction':prediction,
+            'recommender':recommender,
             #'value':value,
         }
 

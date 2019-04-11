@@ -12,6 +12,7 @@ from catalog.models import Triple as tmod
 import psycopg2
 from catalog.models import Opioids as omod
 import requests
+import json
 
 @view_function
 def process_request(request, opioids:cmod.Opioids):    
@@ -28,21 +29,37 @@ def process_request(request, opioids:cmod.Opioids):
         triple = tmod.objects.all()
         value = opioids.isOpioid
 
-        url = "https://ussouthcentral.services.azureml.net/workspaces/807deeba78eb4852b9eb668561bb0ef8/services/98c40a2ed7ae45feb771712d085b6e07/execute"
+        url = "https://ussouthcentral.services.azureml.net/workspaces/4328226122df4cf8be6a08eed8f2b3ce/services/a0801176f7074a80a9091ac2efe5bbe4/execute"
 
-        querystring = {"api-version":"2.0","details":"true"}
+        querystring = {"api-version":"2.0","details":"true%0A%0A%0A"}
 
-        payload = "{\r\n  \"Inputs\": {\r\n    \"input1\": {\r\n      \"ColumnNames\": [\r\n        \"Id\",\r\n        \"DoctorID\",\r\n        \"Fname\",\r\n        \"Lname\",\r\n        \"Gender\",\r\n        \"State\",\r\n        \"Credentials\",\r\n        \"Specialty\",\r\n        \"Opioid.Prescriber\",\r\n        \"TotalPrescriptions\"\r\n      ],\r\n      \"Values\": [\r\n        [\r\n          \"0\",\r\n          \"0\",\r\n          \"value\",\r\n          \"value\",\r\n          \"value\",\r\n          \"value\",\r\n          \"value\",\r\n          \"value\",\r\n          \"0\",\r\n          \"0\"\r\n        ]\r\n      ]\r\n    }\r\n  },\r\n  \"GlobalParameters\": {}\r\n}"
+        payload = "{\r\n  \"Inputs\": {\r\n    \"input1\": {\r\n      \"ColumnNames\": [\r\n        \"DoctorID\",\r\n        \"Drug\",\r\n        \"Qty\"\r\n      ],\r\n      \"Values\": [\r\n        [\r\n          \"0\",\r\n          \""+ opioids.drugName +"\",\r\n          \"0\"\r\n        ]\r\n      ]\r\n    }\r\n  },\r\n  \"GlobalParameters\": {}\r\n}"
         headers = {
-            'Authorization': "Bearer umVWLr3LDvFrZKIR9eOMv8U10mM+d1APjOFJQWNfa8QVl6kRWk2+usTqd8PRSI5v7jSTPsOmCAECXIMHUPJaQQ==",
             'Content-Type': "application/json",
+            'Authorization': "Bearer MNo9jE03VcpAcoeiZaBpKll9KDzekj+oY8UL8kop3+/0uyhK/5f1jp0Iy5/Bw/rCM1fxWvPtjvPmqxHrm7R/QA==",
             'cache-control': "no-cache",
-            'Postman-Token': "eb9ddd44-121f-4dc1-adcf-fee1f88c914b"
+            'Postman-Token': "4b7d7f73-2c4a-41d0-98ea-d2c30b918792"
             }
 
         response = requests.request("POST", url, data=payload, headers=headers, params=querystring)
-
+        print("__>>>>>>>")
         print(response.text)
+
+        recommender=response.text
+
+        parsed_json = json.loads(recommender)
+        
+        prediction=parsed_json["Results"]["output1"]["value"]["Values"]
+        prediction=str(prediction)
+        prediction=prediction.replace("[", "").replace("]", "").replace("\'", "").replace(" ","")
+        prediction=prediction.split(",")
+        
+        rec=[]
+        for item in prediction:
+            if item!=opioids.drugName:
+                recp=cmod.Opioids.objects.get(drugName=item)
+                rec.append(recp)
+        recommender=rec
         
         if request.method == 'POST':
             # create a form instance and populate it with data from the request:
@@ -75,6 +92,7 @@ def process_request(request, opioids:cmod.Opioids):
             'value':value,
             'drugs':drugs,
             'listdrugs':listdrugs,
+            'recommender':recommender,
         }
         return request.dmp.render('drugsdetail.html', context)
     else:

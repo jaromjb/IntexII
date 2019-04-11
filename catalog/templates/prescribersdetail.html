@@ -32,7 +32,11 @@
             <div>
                 <fieldset>
                     <legend>Related Prescribers</legend>
-                    
+                    %for item in recommender:
+                    <a href="/catalog/prescribersdetail/${item.doctorID}">
+                        <h3>${item.fName} ${item.lName} - ${item.specialty}</h3>
+                    </a>
+                    %endfor
                 </fieldset>
             </div>
     </div>   
