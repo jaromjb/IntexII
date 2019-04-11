@@ -31,11 +31,6 @@
                   <ul class="navbar-nav ml-auto">
                       % if user.is_authenticated:
                       <li class="nav-item">
-                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Welcome, ${request.user.first_name} !
-                        </a>
-                      </li>
-                      <li class="nav-item">
                           <a class="nav-link ${ 'active' if request.dmp.page == 'about' else ''}" href ="/catalog/prescribers">Prescribers</a>
                       </li>
                       <li class="nav-item">
@@ -43,10 +38,7 @@
                       </li>
                       <li class="nav-item">
                           <a class="nav-link ${ 'active' if request.dmp.page == 'about' else ''}" href ="/catalog/analytics">Analytics</a>
-                      </li>
-                      <li class="nav-item">
-                            <a class="nav-link ${ 'active' if request.dmp.page == 'about' else ''}" href="/homepage/about/">View Account</a>
-                      </li>   
+                      </li>  
                       <li class="nav-item">
                             <a class="nav-link ${ 'active' if request.dmp.page == 'contact' else ''}" href ="/contact/">Contact</a>
                       </li>

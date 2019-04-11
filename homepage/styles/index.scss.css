@@ -259,6 +259,10 @@ body {
   letter-spacing: 0.0625em;
 }
 
+.img {
+  opacity: 0.8;
+}
+
 a {
   color: #64a19d;
 }
