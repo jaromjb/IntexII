@@ -27,11 +27,14 @@ class Overdoses(models.Model):
     state = models.TextField()
     population = models.IntegerField()
     deaths = models.IntegerField()
-    abbrev = models.TextField()
+    abbrev = models.TextField(max_length=2)
 
 class  Opioids(models.Model):  
     drugName = models.TextField()
-    isOpioid  = models.IntegerField()
+    isOpioid  = models.IntegerField(choices=(
+        ('1', 'Yes'),
+        ('0', 'No'),
+    ),)
 
 class Triple(models.Model):
     doctor = models.ForeignKey(Prescribers, on_delete=models.CASCADE)

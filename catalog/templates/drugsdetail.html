@@ -21,7 +21,9 @@
         
                         %for drug in listdrugs:
                             <a href="/catalog/prescribersdetail/${drug.doctor.doctorID}" style="text-decoration: none">
-                                <ul><h5 style="color: navy">${drug.doctor.fName} ${drug.doctor.lName} - ${drug.doctor.specialty}</h5></ul>                                                          
+                                <ul><h5 style="color: navy">${drug.doctor.fName} ${drug.doctor.lName} - ${drug.doctor.specialty}</h5></ul>
+                                <ul><h5 style="color: navy">     - Prescribed ${drug.qty} times</h5></ul>                                                          
+                                                       
                             </a>
                         %endfor
                         
