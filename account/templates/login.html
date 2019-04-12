@@ -1,12 +1,22 @@
 <%inherit file="app_base.htm" />
 
 <%block name="site_center">
-
-    <form method="POST">
-    <table>
-        ${ form.as_table() }
-    </table>
-    <input type="submit" value="Submit">
-    </form>
-
+    <div class="container ">
+        <form method="POST" style="margin-top: 180px">
+        <center><h3><b>Log In</b></h3></center>
+        
+        <div class="form-grou card justify-content-md-center col-md-6 offset-md-3" style="margin-top: 40px; background-color: lightgray">       
+                    <table>
+                        ${ form.as_table() }
+                    </table>
+                    <br>
+                <br>
+        </div>      
+        <br>
+        <div class="justify-content-md-center">
+            <center><button type="submit" id="submit" class="login100-form-btn" style="width:150px">Log In</button></center>          
+        </div>  
+        </form>
+      </div>     
+     
 </%block>

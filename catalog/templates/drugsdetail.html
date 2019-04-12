@@ -1,0 +1,46 @@
+<%inherit file="app_base.htm" />
+
+<%block name="site_center">
+     <div class="container wrapper" style="margin-top: -600px">
+            <input class="btn btn-secondary my-2 offset-md-1" type=button value="Go Back" onClick="javascript:history.go(-1);">
+            <div class="col-md-6 offset-md-3">
+            <div >
+                        <h1>${opioids.drugName}</h1>
+                        <hr>
+                        %if value == 1:
+                            <div class="alert alert-warning col-6" role="alert">
+                                    This drug is an opiate.
+                            </div>
+                        %elif value == 0:
+                            <div class="alert alert-info col-6" role="alert">
+                                    This drug is not an opiate.
+                            </div>
+                        %endif
+                        <br>
+                        <h3>Top 10 Prescribers of ${opioids.drugName.lower().capitalize()}</h3>
+        
+                        %for drug in listdrugs:
+                            <a href="/catalog/prescribersdetail/${drug.doctor.doctorID}" style="text-decoration: none">
+                                <ul><h5 style="color: navy">${drug.doctor.fName} ${drug.doctor.lName} - ${drug.doctor.specialty}</h5></ul>
+                                <ul><h5 style="color: navy">     - Prescribed ${drug.qty} times</h5></ul>                                                          
+                                                       
+                            </a>
+                        %endfor
+                        
+                </div>
+                <br>
+                <div>
+                    <fieldset>
+                            <h3>Related Drugs</h3>
+                            %for item in recommender:
+                            <a href="/catalog/drugsdetail/${item.id}" style="text-decoration: none;">
+                                <ul><h5 style="color: navy">${item.drugName.lower().capitalize()}</h5></ul>                                
+                            </a>
+                            %endfor
+                    </fieldset>
+                </div>
+            </div>
+        <div class="push" style="margin-bottom: 300px;"></div>
+     </div> 
+
+</%block>

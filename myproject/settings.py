@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 import shutil
+import stripe
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -28,7 +29,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+STRIPE_PUBLIC_KEY = 'pk_test_lrySkCk555GumJB7vdrXGPij00s4P6AeQF'
+STRIPE_SECRET_KEY = 'sk_test_lE9JY2U8Ejb0SLwmbsCoew9F00an7uOl9g'
+stripe.api_key = STRIPE_SECRET_KEY
 
 # Application definition
 
@@ -104,7 +107,7 @@ AUTH_USER_MODEL = 'account.User' #tells django to get my user
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'sprint2',
+        'NAME': 'IntexII',
         'USER': 'postgres',
         'PASSWORD': 'Geneve16!',
         'HOST': 'localhost',

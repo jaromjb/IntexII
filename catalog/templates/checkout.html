@@ -1,0 +1,21 @@
+<%inherit file="app_base.htm" />
+
+<%block name="site_center">
+
+    <form method="POST">
+        <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="${ settings.STRIPE_PUBLIC_KEY }"
+            data-amount="$${sale.total}"
+            data-name="Demo Site"
+            data-description="Widget"
+            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+            data-locale="auto">
+        </script>
+    <table>
+        ${ form.as_table() }
+    </table>
+    <input type="submit" value="Submit">
+    </form>
+
+</%block>

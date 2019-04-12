@@ -2,8 +2,44 @@ from django.db import models
 from django import forms
 from django.conf import settings
 from decimal import Decimal
+import stripe
+from datetime import datetime
 
 TAX_RATE = Decimal("0.05")
+
+class Prescribers(models.Model):
+    doctorID = models.IntegerField(primary_key=True)
+    fName = models.TextField()
+    lName = models.TextField()
+    gender = models.TextField(max_length=1, default='O',
+       choices=(
+       ('M', 'Male'),
+       ('F', 'Female'),
+       ('O', 'Other/Unknown'),
+    ),)
+    state = models.TextField(max_length=2)
+    credentials = models.TextField(null=True)
+    specialty = models.TextField()
+    opioid_prescriber = models.IntegerField()
+    totalPrescriptions = models.IntegerField()
+
+class Overdoses(models.Model):
+    state = models.TextField()
+    population = models.IntegerField()
+    deaths = models.IntegerField()
+    abbrev = models.TextField(max_length=2)
+
+class  Opioids(models.Model):  
+    drugName = models.TextField()
+    isOpioid  = models.IntegerField(choices=(
+        ('1', 'Yes'),
+        ('0', 'No'),
+    ),)
+
+class Triple(models.Model):
+    doctor = models.ForeignKey(Prescribers, on_delete=models.CASCADE)
+    drug = models.ForeignKey(Opioids, on_delete=models.CASCADE)
+    qty = models.IntegerField()
 
 # Create your models here.
 class Category(models.Model):
@@ -53,21 +89,52 @@ class Sale(models.Model):
     tax = models.DecimalField(max_digits=7, decimal_places=2, default=Decimal(0))
     total = models.DecimalField(max_digits=7, decimal_places=2, default=Decimal(0))
     charge_id = models.TextField(null=True, default=None) #successful charge id from stripe
-
+    
     def recalculate(self):
-        '''Recalculates the subtotal, tax, and total fields. Does not save the object.'''
-            # complete this method!
+       '''Recalculates the subtotal, tax, and total fields. Does not save the object.'''
+       rTotal = 0
+       rTax = 0
+       rSubtotal = 0
+       oItems = SaleItem.objects.filter(sale=self, status='A')
+
+       for items in oItems:
+           rSubtotal += (items.price * items.quantity)
+           
+       rTax = rSubtotal * TAX_RATE
+       rTotal = rTax + rSubtotal
+       self.tax = rTax
+       self.subtotal = rSubtotal
+       self.total = rTotal
+
     def finalize(self, stripeToken):        
         '''Finalizes the sale'''
-        # complete this method!
-        # Ensure this sale isn't already finalized (purchased should be None)
-        # Check product quantities one more time
-        # Call recalculate one more time
-        # Create a charge using the `stripeToken` (https://stripe.com/docs/charges)
-            # be sure to pip install stripe and import stripe into this file
-        # Set purchased=now and charge_id=the id from Stripe
-        # Save
+        Items = SaleItem.objects.filter(sale=self, status='A')
 
+        if self.purchased is not None:
+            raise ValueError('This sale has already been finalized')
+
+        for item in Items:
+            if item.product.quantity < item.quantity:
+                raise ValueError(str(item.product.name) + ' only has ' + str(item.product.quantity) + ' available.')
+
+        self.recalculate()
+
+        charge = stripe.Charge.create(
+            amount=int(self.total * 100),
+            currency='usd',
+            description='Example charge',
+            source=stripeToken,
+        )
+
+        self.purchased = datetime.now()
+        self.charge_id = charge['id'] 
+
+        for item in Items:
+            item.product.quantity = item.product.quantity - item.quantity
+
+        self.save()
+
+    
 
 class SaleItem(models.Model):
     STATUS_CHOICES = [

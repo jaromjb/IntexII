@@ -1,0 +1,46 @@
+<%inherit file="app_base.htm" />
+
+<h1>Receipt</h1>
+
+<%block name="site_center">
+
+    <table style="width:100%">
+            <tr>
+                    <td>Product Image</td>
+                    <td>Product Name</td>
+                    <td>Quantity</td>
+                    <td>Price</td>
+                    <td>Extended</td>
+                    <td>Actions</td>            
+                </tr>
+                %for i in si:
+                <tr>
+                    <td><img src="${i.product.image.url()}" height ="50px" alt=""></td>
+                    <td>${i.product.name}</td>
+                    <td>${i.quantity}</td>
+                    <td>$${i.product.price}</td>
+                    <td>$${i.product.price * i.quantity}</td>
+                    <td><a href="catalog/cart.remove/${i.product.id}">Remove</a></td>
+                </tr>
+                %endfor
+                <tr>
+                    <td></td>
+                    <td>Tax</td>
+                    <td></td>
+                    <td></td>
+                    <td>$${cart.tax}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Total</td>
+                    <td></td>
+                    <td></td>
+                    <td>$${cart.total}</td>
+                </tr>
+    </table>
+
+    <p>Thank you for shopping with us!</p>
+
+    <a class="btn btn-success" href="/catalog/checkout/">Checkout</a>
+        
+</%block>

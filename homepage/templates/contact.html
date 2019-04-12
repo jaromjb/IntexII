@@ -1,11 +1,28 @@
 <%inherit file="app_base.htm" />
-
+<%block name="title">Contact</%block>
 <%block name="site_center">
-
-<form method="POST">
-    <p>Name: <input type="text" name="yourname" /></p>
-    <p>Email: <input type="email" name="youremail" /></p>
-    <input type="submit"/>
-</form>
-
+        <div class="container">
+                <form method="POST" style="margin-top: 80px">
+                <center><h3><b>Contact Us</b></h3></center>
+                <br>
+                <center><p class="lead">Thank you for interesting in our product and reach out to us. We will reply to your message as soon as possible.</p></center>
+                
+                <div class="row justify-content-md-center" style="margin-top: 40px">       
+                        <div class="form-group col-12 col-md-8">
+                                <label for="inputName">Your name</label>
+                                <input type="text" class="form-control" id="inputName" placeholder="Enter your name" >
+                        </div>
+                        <br>
+                        <div class="form-group col-12 col-md-8">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input type="email" class="form-control" id="inputEmail1" aria-describedby="emailHelp" placeholder="Enter email" >
+                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                        <br>
+                </div>      
+                <div class="justify-content-md-center">
+                        <center><button type="button" class="font-weight-light btn btn-outline-secondary" id="start">Submit</button></center>           
+                </div>  
+                </form>
+        </div>
 </%block>
